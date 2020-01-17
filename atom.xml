@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Hongliang</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-14T16:36:32.224Z</updated>
+  <updated>2020-01-16T16:32:10.465Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>朱宏梁</name>
     
   </author>
   
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2020/01/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
     <id>http://yoursite.com/2020/01/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
     <published>2020-01-14T16:09:33.000Z</published>
-    <updated>2020-01-14T16:36:32.224Z</updated>
+    <updated>2020-01-16T16:32:10.465Z</updated>
     
     <content type="html"><![CDATA[<h1 id="爱小琪啊！"><a href="#爱小琪啊！" class="headerlink" title="爱小琪啊！"></a>爱小琪啊！</h1><p>代码段</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"hello world"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -36,6 +36,12 @@
     </summary>
     
     
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="javaweb" scheme="http://yoursite.com/tags/javaweb/"/>
     
   </entry>
   
