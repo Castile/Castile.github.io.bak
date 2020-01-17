@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://castile.github.io/"/>
   <updated>2020-01-16T16:32:10.465Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://castile.github.io/</id>
   
   <author>
     <name>朱宏梁</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>我的第一篇文章</title>
-    <link href="http://yoursite.com/2020/01/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>http://yoursite.com/2020/01/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <link href="https://castile.github.io/2020/01/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://castile.github.io/2020/01/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
     <published>2020-01-14T16:09:33.000Z</published>
     <updated>2020-01-16T16:32:10.465Z</updated>
     
@@ -36,19 +36,19 @@
     </summary>
     
     
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+      <category term="Java" scheme="https://Castile.github.io/categories/Java/"/>
     
     
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+      <category term="java" scheme="https://Castile.github.io/tags/java/"/>
     
-      <category term="javaweb" scheme="http://yoursite.com/tags/javaweb/"/>
+      <category term="javaweb" scheme="https://Castile.github.io/tags/javaweb/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2020/01/15/hello-world/"/>
-    <id>http://yoursite.com/2020/01/15/hello-world/</id>
+    <link href="https://castile.github.io/2020/01/15/hello-world/"/>
+    <id>https://castile.github.io/2020/01/15/hello-world/</id>
     <published>2020-01-14T16:05:42.626Z</published>
     <updated>2020-01-14T16:05:42.626Z</updated>
     
