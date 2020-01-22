@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://castile.github.io/"/>
-  <updated>2020-01-22T09:57:10.577Z</updated>
+  <updated>2020-01-22T12:50:08.604Z</updated>
   <id>https://castile.github.io/</id>
   
   <author>
@@ -17,11 +17,75 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>记2020年1月22日</title>
+    <link href="https://castile.github.io/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/"/>
+    <id>https://castile.github.io/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/</id>
+    <published>2020-01-22T12:37:27.000Z</published>
+    <updated>2020-01-22T12:50:08.604Z</updated>
+    
+    <content type="html"><![CDATA[<p>2020年1月22日， 回老家的第二天，去了趟外婆家，吃撑了。</p><p><img src="/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/1.jpg" alt="捉鱼"></p><p><img src="/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/3.jpg" alt="hhhhhhhh"></p><p><img src="/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/2.jpg" alt="这鱼的力气好大啊"></p><p>​        这鱼的力气真大，在我手中挣脱好几次了，费了九牛二虎之力才把他弄回家！！！</p><p>​    最近不知为啥，一吃饭，附近的各种野猫和其他人家的小狗就过来了..挺可爱的</p><p><img src="/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/4.jpg" alt="野猫"></p><p><img src="/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/5.jpg" alt="野猫"></p><p><img src="/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/6.jpg" alt="小白"></p><p><img src="/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/7.jpg" alt="小白"></p><p>最几天肺炎很严重啊！担心。</p><p>再见。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;2020年1月22日， 回老家的第二天，去了趟外婆家，吃撑了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/22/%E8%AE%B02020%E5%B9%B41%E6%9C%8822%E6%97%A5/1.jpg&quot; alt=&quot;捉鱼&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://Castile.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://Castile.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="日记" scheme="https://Castile.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode-128-最长连续序列</title>
+    <link href="https://castile.github.io/2020/01/22/leetcode-128-LongestConsecutiveSequence/"/>
+    <id>https://castile.github.io/2020/01/22/leetcode-128-LongestConsecutiveSequence/</id>
+    <published>2020-01-22T10:15:19.000Z</published>
+    <updated>2020-01-22T12:34:35.213Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><blockquote><p>LeetCode128: 最长连续序列longest-consecutive-sequence</p><p>给定一个未排序的整数数组，找出最长连续序列的长度。</p><p>要求算法的时间复杂度为 ==<strong>O(n)</strong>==。 【困难】</p><p>示例:</p><p>输入: [100, 4, 200, 1, 3, 2]<br>输出: 4<br>解释: 最长连续序列是 [1, 2, 3, 4]。它的长度为 4。</p><p>链接：<a href="https://leetcode-cn.com/problems/longest-consecutive-sequence" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-consecutive-sequence</a></p></blockquote><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>​    如果允许O(nlogn)的复杂度，那么可以先排序，可是本题要求    O(n)    。<br>由于序列里的元素是无序的，又要求    O(n)    ，首先要想到用哈希表。<br>用一个哈希表存储所有出现过的元素，对每个元素，以该元素为中心，往左右扩张，直到不连续为止，记 录下最长的长度。</p><h2 id="Java代码实现"><a href="#Java代码实现" class="headerlink" title="Java代码实现"></a>Java代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Hongliang Zhu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2020-01-22 18:15</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">给定一个未排序的整数数组，找出最长连续序列的长度。</span></span><br><span class="line"><span class="comment">要求算法的时间复杂度为 O(n)。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">leetcode128_LongestConsecutiveSequence</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">longestConsecutive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        HashSet&lt;Integer&gt; myset = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i: nums)&#123;</span><br><span class="line">            myset.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> longest = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i: nums) &#123;</span><br><span class="line">            <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>; myset.contains(j); j++)&#123;</span><br><span class="line">                myset.remove(j);</span><br><span class="line">                len++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; myset.contains(j); j--)&#123;</span><br><span class="line">                myset.remove(j);</span><br><span class="line">                len++;</span><br><span class="line">            &#125;</span><br><span class="line">            longest = Math.max(longest, len);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> longest;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> []nums = &#123;<span class="number">100</span>, <span class="number">4</span>, <span class="number">200</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> len = longestConsecutive(nums);</span><br><span class="line">        System.out.println(len);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>输出4</p><p>时间复杂度为O(n) ， 空间复杂度O(n)</p><p>Leetcode官方：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestConsecutive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> longestStreak = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> currentStreak = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != nums[i-<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] == nums[i-<span class="number">1</span>]+<span class="number">1</span>) &#123;</span><br><span class="line">                    currentStreak += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    longestStreak = Math.max(longestStreak, currentStreak);</span><br><span class="line">                    currentStreak = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Math.max(longestStreak, currentStreak);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：LeetCode</span><br><span class="line">链接：https:<span class="comment">//leetcode-cn.com/problems/longest-consecutive-sequence/solution/zui-chang-lian-xu-xu-lie-by-leetcode/</span></span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;LeetCode128: 最长连续序列longest-consecutive-sequence&lt;/p&gt;
+&lt;p&gt;给定
+      
+    
+    </summary>
+    
+    
+      <category term="-Algorithm" scheme="https://Castile.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="算法" scheme="https://Castile.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="数组" scheme="https://Castile.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="哈希" scheme="https://Castile.github.io/tags/%E5%93%88%E5%B8%8C/"/>
+    
+      <category term="困难" scheme="https://Castile.github.io/tags/%E5%9B%B0%E9%9A%BE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>leetcode-80-删除排序数组的重复项2</title>
     <link href="https://castile.github.io/2020/01/22/leetcode-80-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B92/"/>
     <id>https://castile.github.io/2020/01/22/leetcode-80-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B92/</id>
     <published>2020-01-22T08:47:45.000Z</published>
-    <updated>2020-01-22T09:57:10.577Z</updated>
+    <updated>2020-01-22T10:13:33.534Z</updated>
     
     <content type="html"><![CDATA[<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>leetcode-80-删除排序数组的重复项2：</p><blockquote><p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。<br>链接：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii</a><br>相似题目： <a href="https://castile.github.io/Castile.github.io/2020/01/21/leetcode26-删除排序数组的重复项/">https:/Castile.github.io/2020/01/21/leetcode26-删除排序数组的重复项/</a> </p><p><strong>==tag：双指针思想==</strong></p></blockquote><p>示例 1:</p><p>给定 nums = [1,1,1,2,2,3],</p><p>函数应返回新长度 length = 5, 并且原数组的前五个元素被修改为 1, 1, 2, 2, 3 。</p><p>你不需要考虑数组中超出新长度后面的元素。<br>示例 2:</p><p>给定 nums = [0,0,1,1,1,1,2,3,3],</p><p>函数应返回新长度 length = 7, 并且原数组的前五个元素被修改为 0, 0, 1, 1, 2, 3, 3 。</p><p>你不需要考虑数组中超出新长度后面的元素。</p><hr><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>​    覆盖多余的重复项。由于题目要求原地操作，设置两个指针，一个为快指针，用来遍历整个数组，一个慢指针，用来记录数组的长度以及覆盖数组的位置下标。题目要求每个元素最多出现两次，则应该引入一个计数变量，记录元素出现的次数。</p><p>​    特别地，题目给的数组为已经排好序的数组，如果未排序，则需要引入一个hashmap来记录出现次数。</p><p>​    从下标1开始遍历，nums[i-1]  ?= nums[i] ：如果相等，则更新</p><p> 时间复杂度O(n)， 空间复杂度O(1)</p><h2 id="Java代码实现"><a href="#Java代码实现" class="headerlink" title="Java代码实现"></a>Java代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Hongliang Zhu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2020-01-22 10:07</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">leetcode_80_remove_duplicates_from_sorted_array_ii</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> p = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> c = <span class="number">1</span>; <span class="comment">// 计数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length;  i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] == nums[i-<span class="number">1</span>])&#123;</span><br><span class="line">                c++;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                c = <span class="number">1</span>;  <span class="comment">//复位</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>( c &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">                nums[p] = nums[i];</span><br><span class="line">                p++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> []nums = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> len = removeDuplicates(nums);</span><br><span class="line">        System.out.println(len);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            System.out.println(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>输出：</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,</span><br></pre></td></tr></table></figure><p>另外：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">removeDuplicates2</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> nums.length;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[index-<span class="number">2</span>] != nums[i])&#123;</span><br><span class="line">            nums[index++] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>扩展性，例如将上面的数字2    改为    3    ， 就变成了允许重复最多3次。</p><p>**相似题目： <a href="https://castile.github.io/Castile.github.io/2020/01/21/leetcode26-删除排序数组的重复项/">https:/Castile.github.io/2020/01/21/leetcode26-删除排序数组的重复项/</a> </p>]]></content>
     
@@ -44,6 +108,10 @@
     
       <category term="数组" scheme="https://Castile.github.io/tags/%E6%95%B0%E7%BB%84/"/>
     
+      <category term="双指针" scheme="https://Castile.github.io/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+      <category term="中等" scheme="https://Castile.github.io/tags/%E4%B8%AD%E7%AD%89/"/>
+    
   </entry>
   
   <entry>
@@ -51,9 +119,9 @@
     <link href="https://castile.github.io/2020/01/21/leetcode26-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/"/>
     <id>https://castile.github.io/2020/01/21/leetcode26-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</id>
     <published>2020-01-21T15:43:12.000Z</published>
-    <updated>2020-01-21T15:51:25.718Z</updated>
+    <updated>2020-01-22T12:36:15.400Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><blockquote><p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。<br>链接：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array</a></p></blockquote><p>示例 1:</p><p>给定数组 nums = [1,1,2], </p><p>函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 </p><p>你不需要考虑数组中超出新长度后面的元素。</p><p>示例 2:</p><p>给定 nums = [0,0,1,1,1,2,2,3,3,4],</p><p>函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>可以采用快慢指针，即双指针思路，这种方法在线性表查重，判断环上用的比较多。</p><p><img src="/2020/01/21/leetcode26-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/1579619435618.png" alt="双指针算法流程"></p><p>​    数组完成排序后，我们可以放置两个指针 p 和q，其中p是慢指针，而 q 是快指针。只要 nums[p] = nums[q]，我们就增加 q以跳过重复项。当我们遇到 nums[p] ≠ nums[q] 时，跳过重复项的运行已经结束，因此我们必须把它（nums[q]）的值复制到 nums[p+1]。然后递增 p，接着我们将再次重复相同的过程，直到q到达数组的末尾为止。</p><p>​    时间复杂度O(n),  空间复杂度O(1)：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> q = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(q &lt; nums.length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[p] == nums[q])&#123;</span><br><span class="line">                q++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">                nums[p+<span class="number">1</span>] = nums[q];</span><br><span class="line">                p++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> p + <span class="number">1</span> ;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><blockquote><p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。<br>链接：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array</a></p></blockquote><p>示例 1:</p><p>给定数组 nums = [1,1,2], </p><p>函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 </p><p>你不需要考虑数组中超出新长度后面的元素。</p><p>示例 2:</p><p>给定 nums = [0,0,1,1,1,2,2,3,3,4],</p><p>函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>可以采用快慢指针，即双指针思路，这种方法在线性表查重，判断环上用的比较多。</p><p><img src="/2020/01/21/leetcode26-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/1579619435618.png" alt="双指针算法流程"></p><p>​    数组完成排序后，我们可以放置两个指针 p 和q，其中p是慢指针，而 q 是快指针。只要 nums[p] = nums[q]，我们就增加 q以跳过重复项。当我们遇到 nums[p] ≠ nums[q] 时，跳过重复项的运行已经结束，因此我们必须把它（nums[q]）的值复制到 nums[p+1]。然后递增 p，接着我们将再次重复相同的过程，直到q到达数组的末尾为止。</p><p>​    时间复杂度O(n),  空间复杂度O(1)：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> q = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(q &lt; nums.length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[p] == nums[q])&#123;</span><br><span class="line">                q++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">                nums[p+<span class="number">1</span>] = nums[q];</span><br><span class="line">                p++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> p + <span class="number">1</span> ;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>相关： <a href="https://castile.github.io/Castile.github.io/2020/01/22/leetcode-80-删除排序数组的重复项2/">https:/Castile.github.io/2020/01/22/leetcode-80-删除排序数组的重复项2/</a> </p>]]></content>
     
     <summary type="html">
     
@@ -72,31 +140,6 @@
       <category term="算法" scheme="https://Castile.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="数组" scheme="https://Castile.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>新闻纸</title>
-    <link href="https://castile.github.io/2020/01/20/%E6%96%B0%E9%97%BB%E7%BA%B8/"/>
-    <id>https://castile.github.io/2020/01/20/%E6%96%B0%E9%97%BB%E7%BA%B8/</id>
-    <published>2020-01-20T07:24:00.000Z</published>
-    <updated>2020-01-20T07:24:21.239Z</updated>
-    
-    <content type="html"><![CDATA[<p>测试来比力</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;测试来比力&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-    
-      <category term="随笔" scheme="https://Castile.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -122,88 +165,6 @@
     
     
       <category term="算法" scheme="https://Castile.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>picture blog</title>
-    <link href="https://castile.github.io/2020/01/20/picture-blog/"/>
-    <id>https://castile.github.io/2020/01/20/picture-blog/</id>
-    <published>2020-01-20T05:39:19.000Z</published>
-    <updated>2020-01-20T06:27:39.713Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/2020/01/20/picture-blog/01/20/picture-blog/1.jpg" class title="这是一张图片 picture"><p><img src="/2020/01/20/picture-blog/3.jpg" alt="picture 图片"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;img src=&quot;/2020/01/20/picture-blog/01/20/picture-blog/1.jpg&quot; class title=&quot;这是一张图片 picture&quot;&gt;
-
-&lt;p&gt;&lt;img src=&quot;/2020/01/20/picture-blog/3.jpg&quot; alt
-      
-    
-    </summary>
-    
-    
-    
-      <category term="随笔" scheme="https://Castile.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>放假了</title>
-    <link href="https://castile.github.io/2020/01/17/%E6%94%BE%E5%81%87%E4%BA%86/"/>
-    <id>https://castile.github.io/2020/01/17/%E6%94%BE%E5%81%87%E4%BA%86/</id>
-    <published>2020-01-17T11:44:51.000Z</published>
-    <updated>2020-01-17T12:27:56.549Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>今天准备回家了</p><h2 id="早上"><a href="#早上" class="headerlink" title="早上"></a>早上</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"hhhhhhh"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;p&gt;今天准备回家了&lt;/p&gt;
-&lt;h2 id=&quot;早上&quot;&gt;&lt;a href=&quot;#早上&quot; class=&quot;headerlink&quot; title=&quot;早上&quot;&gt;&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://Castile.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="https://Castile.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我的第一篇文章</title>
-    <link href="https://castile.github.io/2020/01/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://castile.github.io/2020/01/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-01-14T16:09:33.000Z</published>
-    <updated>2020-01-20T06:58:44.019Z</updated>
-    
-    <content type="html"><![CDATA[<p>代码段</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"hello world"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;代码段&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;s
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://Castile.github.io/categories/Java/"/>
-    
-    
-      <category term="java" scheme="https://Castile.github.io/tags/java/"/>
-    
-      <category term="javaweb" scheme="https://Castile.github.io/tags/javaweb/"/>
     
   </entry>
   
