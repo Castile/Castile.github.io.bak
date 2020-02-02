@@ -231,6 +231,294 @@
             
 
   
+    <article id="post-leetcode-130-被围绕的区域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/01/26/leetcode-130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F/">leetcode-130-被围绕的区域</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/01/26/leetcode-130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F/" class="archive-article-date">
+        <time datetime="2020-01-26T08:20:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><blockquote>
+<p>Leetcode-130： 被围绕的区域</p>
+<p>给定一个二维的矩阵，包含 ‘X’ 和 ‘O’（字母 O）。</p>
+<p>找到所有被 ‘X’ 围绕的区域，并将这些区域里所有的 ‘O’ 用 ‘X’ 填充。</p>
+<p>示例:</p>
+<p>X X X X<br>X O O X<br>X X O X<br>X O X X<br>运行你的函数后，矩阵变为：</p>
+<p>X X X X<br>X X X X<br>X X X X<br>X O X X<br>解释:</p>
+<p>被围绕的区间不会存在于边界上，换句话说，任何边界上的 ‘O’ 都不会被填充为 ‘X’。 任何不在边界上，或不与边界上的 ‘O’ 相连的 ‘O’ 最终都会被填充为 ‘X’。如果两个元素在水平或垂直方向相邻，则称它们是“相连”的。</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/surrounded-regions" target="_blank" rel="noopener">https://leetcode-cn.com/problems/surrounded-regions</a></p>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
+<li><p>dfs搜索：将边界上的‘O’及其连通的先设置成‘#’标识，这些是不会被填充的，等搜索完毕之后再将这些标志换回‘O’。而在里面的‘O’就是被包围的区域，通过双层循环将里面的’O‘替换成’X‘即可。</p>
+</li>
+<li><p>并查集：并查集的思想就是，同一个连通区域内的所有点的根节点是同一个。将每个点映射成一个数字。先假设每个点的根节点就是他们自己，然后我们以此输入连通的点对，然后将其中一个点的根节点赋成另一个节点的根节点，这样这两个点所在连通区域又相互连通了。</p>
+<p>并查集代码：UF</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Hongliang Zhu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2020-01-25 21:25</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 并查集 UF</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UF</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count = <span class="number">0</span>; <span class="comment">// 连通分量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] parent;</span><br><span class="line">    <span class="comment">// 新增一个数组记录树的“重量”</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] size;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UF</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123; <span class="comment">// n个元素</span></span><br><span class="line">        <span class="keyword">this</span>.count = n;</span><br><span class="line">        size = <span class="keyword">new</span>  <span class="keyword">int</span>[n];</span><br><span class="line">        parent = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="comment">// 一开始每一个节点自成一个集合，都不连通</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;  i &lt; n;  i++)&#123;</span><br><span class="line">            parent[i]  = i; <span class="comment">// 自己的父节点指向自己</span></span><br><span class="line">            size[i] = <span class="number">1</span>; <span class="comment">// 每隔几何只有自身一个元素</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> root = parent[x];</span><br><span class="line">        <span class="keyword">while</span> (parent[x] != x)&#123; <span class="comment">// 路径压缩</span></span><br><span class="line">            x = parent[x];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameSet</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> find(a) == find(b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">union</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rootA = find(a);</span><br><span class="line">        <span class="keyword">int</span> rootB = find(b);</span><br><span class="line">        <span class="keyword">if</span>(rootA == rootB)&#123;</span><br><span class="line">            <span class="keyword">return</span>; <span class="comment">// 同一个集合不能合并</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(size[rootA] &gt; size[rootB])&#123;</span><br><span class="line">                parent[rootB] = rootA;</span><br><span class="line">                size[rootA] += size[rootB];</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                parent[rootA] = rootB;</span><br><span class="line">                size[rootB] += size[rootA];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        count--; <span class="comment">// 连通分量个数减一</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>可以把那些不需要被替换的</strong> <strong><code>O</code></strong> <strong>看成一个拥有独门绝技的门派，它们有一个共同祖师爷叫</strong> <strong><code>dummy</code>**</strong>，这些** <strong><code>O</code></strong> <strong>和</strong> <strong><code>dummy</code></strong> <strong>互相连通，而那些需要被替换的</strong> <strong><code>O</code></strong> <strong>与</strong> <strong><code>dummy</code></strong> <strong>不连通</strong>。 如下图:</p>
+<img src="/2020/01/26/leetcode-130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F/1580027256551.png" style="zoom:80%;">
+
+
+
+</li>
+</ol>
+<p>   ​        首先要解决的是，根据我们的实现，Union-Find 底层用的是一维数组，构造函数需要传入这个数组的大小，而题目给的是一个二维棋盘。</p>
+<p>   ​        这个很简单，二维坐标 <code>(x,y)</code> 可以转换成 <code>x * n + y</code> 这个数（<code>m</code> 是棋盘的行数，<code>n</code> 是棋盘的列数）。敲黑板，<strong>这是将二维坐标映射到一维的常用技巧</strong>。</p>
+<p>   ​        其次，我们之前描述的「祖师爷」是虚构的，需要给他老人家留个位置。索引 <code>[0.. m*n-1]</code> 都是棋盘内坐标的一维映射，那就让这个虚拟的 <code>dummy</code> 节点占据索引 <code>m * n</code> 好了。</p>
+<p>   ​        我们的思路是把所有边界上的 O看做一个连通区域。遇到 O 就执行并查集合并操作，这样所有的 O 就会被分成两类</p>
+<ol>
+<li>和边界上的 O在一个连通区域内的。这些 O 我们保留。</li>
+<li>不和边界上的O 在一个连通区域内的。这些 O 就是被包围的，替换。</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ol>
+<li><p>dfs版本</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] directions = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(board == <span class="keyword">null</span> || board.length == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> m = board.length;</span><br><span class="line">        <span class="keyword">int</span> n = board[<span class="number">0</span>].length;</span><br><span class="line">        <span class="comment">//  边缘搜索</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>((i == <span class="number">0</span> || j == <span class="number">0</span> || i == m-<span class="number">1</span> || j == n-<span class="number">1</span>)  &amp;&amp;  (board[i][j] == <span class="string">'O'</span>))&#123;</span><br><span class="line">                    dfs(board, i, j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>)&#123;</span><br><span class="line">                   board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span>(board[i][j] == <span class="string">'#'</span>)&#123;</span><br><span class="line">                   board[i][j] = <span class="string">'O'</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               </span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> i,  <span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">0</span> || j &lt; <span class="number">0</span> || i &gt;= board.length || j &gt;= board[<span class="number">0</span>].length || board[i][j] != <span class="string">'O'</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        board[i][j] = <span class="string">'#'</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] d: directions)&#123;</span><br><span class="line">            dfs(board, i+d[<span class="number">0</span>], d[<span class="number">1</span>]+j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/01/26/leetcode-130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F/1580027995406.png" alt="leetcode测试用例" style="zoom:80%;" align="center">
+</li>
+<li><p>并查集</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用并查集解决</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">solveUF</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(board==<span class="keyword">null</span> || board.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> m = board.length;</span><br><span class="line">    <span class="keyword">int</span> n = board[<span class="number">0</span>].length;</span><br><span class="line">    <span class="comment">// 边界上的‘O’的根节点都是dummy</span></span><br><span class="line">    UF uf = <span class="keyword">new</span> UF(n * m + <span class="number">1</span>);<span class="comment">//  增加一个存储dummy节点</span></span><br><span class="line">    <span class="keyword">int</span> dummy = m * n;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>)&#123; <span class="comment">// 目标</span></span><br><span class="line">                <span class="keyword">if</span>(i == <span class="number">0</span> || j == <span class="number">0</span> || i == m -<span class="number">1</span> || j == n -<span class="number">1</span>) &#123; <span class="comment">// 如果是边界上的'O'， 与dummy合并</span></span><br><span class="line">                    uf.union(i*n+j, dummy);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123; <span class="comment">// 里面的</span></span><br><span class="line">                    <span class="comment">// 方向数组 d 是上下左右搜索的常用手法</span></span><br><span class="line">                    <span class="keyword">int</span>[][] d = <span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#123;<span class="number">1</span>,<span class="number">0</span>&#125;, &#123;<span class="number">0</span>,<span class="number">1</span>&#125;, &#123;<span class="number">0</span>,-<span class="number">1</span>&#125;, &#123;-<span class="number">1</span>,<span class="number">0</span>&#125;&#125;;</span><br><span class="line">                    <span class="comment">// 将此 O 与上下左右的 O 连通</span></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">4</span>; k++) &#123;</span><br><span class="line">                        <span class="keyword">int</span> x = i + d[k][<span class="number">0</span>];</span><br><span class="line">                        <span class="keyword">int</span> y = j + d[k][<span class="number">1</span>];</span><br><span class="line">                        <span class="keyword">if</span> (board[x][y] == <span class="string">'O'</span>)</span><br><span class="line">                            uf.union(x * n + y, i * n + j);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span>  i = <span class="number">1</span>;  i &lt; m-<span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n-<span class="number">1</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!uf.isSameSet(i*n+j, dummy))&#123;</span><br><span class="line">                board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/01/26/leetcode-130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F/1580043663800.png" alt="1580043663800" style="zoom:80%;" align="center">
+
+</li>
+</ol>
+<p>参考：</p>
+<ol>
+<li><a href="https://cyc2018.github.io/CS-Notes" target="_blank" rel="noopener">https://cyc2018.github.io/CS-Notes</a></li>
+<li><a href="https://labuladong.gitbook.io/algo/gao-pin-mian-shi-xi-lie/unionfind-suan-fa-ying-yong#yi-dfs-de-ti-dai-fang-an" target="_blank" rel="noopener">https://labuladong.gitbook.io/algo/gao-pin-mian-shi-xi-lie/unionfind-suan-fa-ying-yong#yi-dfs-de-ti-dai-fang-an</a> </li>
+</ol>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dfs</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">并查集</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">搜索</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Algorithm//" class="article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/01/26/leetcode-130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode-1-两数之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/01/23/leetcode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">leetcode-1-两数之和</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/01/23/leetcode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="archive-article-date">
+        <time datetime="2020-01-23T13:54:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><blockquote>
+<p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<ul>
+<li><input checked disabled type="checkbox"> 你可以假设每种输入只会对应一个答案。但是，<strong>你不能重复利用这个数组中同样的元素</strong>。</li>
+</ul>
+<p>示例:</p>
+<p>给定 nums = [2, 7, 11, 15], target = 9</p>
+<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]<br>链接：<a href="https://leetcode-cn.com/problems/two-sum" target="_blank" rel="noopener">https://leetcode-cn.com/problems/two-sum</a></p>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
+<li><p>暴力方法： 直接两层循环，时间复杂度较高：O(n^2^)</p>
+</li>
+<li><p>哈希方法：使用哈希表可以实现O(1)级别的存取。存储每个数对应的下标，复杂度    O(n)    </p>
+<p>参考：</p>
+<p>HashMap的时间复杂度O(1)的思考：</p>
+<p>​    原文链接：<a href="https://blog.csdn.net/donggua3694857/article/details/64127131" target="_blank" rel="noopener">https://blog.csdn.net/donggua3694857/article/details/64127131</a></p>
+</li>
+</ol>
+<h2 id="Java代码实现"><a href="#Java代码实现" class="headerlink" title="Java代码实现"></a>Java代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Hongliang Zhu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2020-01-23 21:39</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">leetcode_1_twoSum</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 暴力法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] == target) &#123;</span><br><span class="line">                    a[<span class="number">0</span>] = i;</span><br><span class="line">                    a[<span class="number">1</span>] = j;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 哈希</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] twoSum1(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; mymap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length;  i++)&#123;</span><br><span class="line">            mymap.put(nums[i], i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> t = target - nums[i];</span><br><span class="line">            <span class="keyword">if</span>(mymap.containsKey(t) &amp;&amp; mymap.get(t) != i )&#123;<span class="comment">// 注意后面这个条件，题目要求</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;i,mymap.get(t)&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span>[] nums = &#123; <span class="number">2</span>,<span class="number">11</span>,<span class="number">15</span>, <span class="number">7</span>&#125;;</span><br><span class="line">       <span class="keyword">int</span> target = <span class="number">9</span>;</span><br><span class="line">       <span class="keyword">int</span> []result = twoSum1(nums, target);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;  i &lt; result.length; i++)</span><br><span class="line">       &#123;</span><br><span class="line">           System.out.println(result[i]);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考HashMap：</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4Njg5MDA5NA==&amp;mid=2247486169&amp;idx=2&amp;sn=9818c995d51a19cd4a40c2605bdcfa5d&amp;chksm=ebd74bd8dca0c2cefe86f54bcdd7f799ceda0a14deb72a4fcec7efa29fc3deffbc6e80d8a90f&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1575479594341&amp;sharer_shareid=2d7d0e474d11d42bad66b1f70e2c85ff&amp;key=688085f24308deb8e963b43a687ea8ed3be23533e2ae4e751f02a336bb46979d39e6c74e731daa5fc22d9e719338c7f0f98152a12a38beef1d0023e2939dd0eda93264a9d032b8cc555448c332453c25&amp;ascene=1&amp;uin=MjA3NDA5MzU4MQ==&amp;devicetype=Windows%2010&amp;version=62070158&amp;lang=zh_CN&amp;exportkey=A5ZIZKTn0EuksyOXwEiV%2bEk=&amp;pass_ticket=Nb/JBXAYTcQup5FBKcfsQy6kFv5X2eJwQ333U4h1UYJmrnawwezuSj8nX18XzQ8s" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzI4Njg5MDA5NA==&amp;mid=2247486169&amp;idx=2&amp;sn=9818c995d51a19cd4a40c2605bdcfa5d&amp;chksm=ebd74bd8dca0c2cefe86f54bcdd7f799ceda0a14deb72a4fcec7efa29fc3deffbc6e80d8a90f&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1575479594341&amp;sharer_shareid=2d7d0e474d11d42bad66b1f70e2c85ff&amp;key=688085f24308deb8e963b43a687ea8ed3be23533e2ae4e751f02a336bb46979d39e6c74e731daa5fc22d9e719338c7f0f98152a12a38beef1d0023e2939dd0eda93264a9d032b8cc555448c332453c25&amp;ascene=1&amp;uin=MjA3NDA5MzU4MQ==&amp;devicetype=Windows%2010&amp;version=62070158&amp;lang=zh_CN&amp;exportkey=A5ZIZKTn0EuksyOXwEiV%2bEk=&amp;pass_ticket=Nb/JBXAYTcQup5FBKcfsQy6kFv5X2eJwQ333U4h1UYJmrnawwezuSj8nX18XzQ8s</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简单</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Algorithm//" class="article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/01/23/leetcode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-记2020年1月22日" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
