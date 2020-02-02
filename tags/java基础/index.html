@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Castile.github.io">
-  <title>Tag: Java基础 | Castile</title>
+  <title>Tag: java基础 | Castile</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="北京交通大学">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Castile">
-<meta property="og:url" content="https://castile.github.io/tags/Java%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:url" content="https://castile.github.io/tags/java%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Castile">
 <meta property="og:description" content="北京交通大学">
 <meta property="og:locale" content="en_US">
@@ -242,8 +242,8 @@
     <header class="archive-article-header">
       	<div class="article-meta">
 	      	
-<a href="/2020/01/29/Java%E5%85%B3%E9%94%AE%E5%AD%97/" class="archive-article-date">
-        <time datetime="2020-01-29T02:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-29</time>
+<a href="/2020/01/28/Java%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E5%92%8C%E6%8B%86%E7%AE%B1/" class="archive-article-date">
+        <time datetime="2020-01-28T03:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
 </a>
 
         </div>
@@ -251,7 +251,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="archive-article-title" href="/2020/01/29/Java%E5%85%B3%E9%94%AE%E5%AD%97/">Java关键字</a>
+	  <a class="archive-article-title" href="/2020/01/28/Java%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E5%92%8C%E6%8B%86%E7%AE%B1/">Java的自动装箱和拆箱</a>
 	
     </h1>
   
@@ -268,11 +268,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java基础</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">关键字</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
         		</li>
       		
 		</ul>
@@ -492,6 +488,10 @@
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">bfs</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">位操作</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -657,6 +657,73 @@
 
   
   <!-- <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
+  
+  
+    <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+  /**
+   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
+   */
+  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
+    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
+  //特定的模型json文件名称
+  var modelPathJson = {
+    "epsilon2_1": "Epsilon2.1",
+    "gf": "Gantzert_Felixander",
+    "haru/01": "haru01",
+    "haru/02": "haru02",
+    "nietzsche": "nietzche"
+  }
+
+  
+    var modelName = "hijiki";
+  
+
+  var modelJsonPath = "";
+  if (modelPathJson[modelName]) {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
+      ".model.json";
+  } else {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
+  }
+  L2Dwidget.init({
+    model: {
+      jsonPath: modelJsonPath
+    },
+    display: {
+       position: "right", 
+       width: 145, 
+       height: 315, 
+       hOffset: 50, 
+      
+    },
+    mobile: {
+      
+       scale: 0.6 
+    },
+    react: {
+       opacity: 0.8 
+    }
+  })
+
+</script>
+
+  
+  
+  <script type="text/javascript" src="/lib/snow.js"></script>
+  <script type="text/javascript" src="/lib/jquery-2.1.4.min.js"></script>
+  <script>
+    snow.down();
+    $(window).resize(function() {
+      $("canvas").css("z-index","500").remove();
+      snow.down();
+    });
+  </script>
+  
+</body>
+
+</html>
+ibbon.min.js"></script> -->
   
   
     <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
