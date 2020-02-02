@@ -452,8 +452,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>[toc]</p>
-<h1 id="一、-概述"><a href="#一、-概述" class="headerlink" title="一、 概述"></a>一、 概述</h1><h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><p>​        集合是存储对象的容器，集合中可以存储任意类型的对象，而且长度可变。在程序中有可能无法预先知道需要多少个对象，那么用数组来装对象的话，长度不好定义，而集合解决了这样的问题。</p>
+    <h1 id="一、-概述"><a href="#一、-概述" class="headerlink" title="一、 概述"></a>一、 概述</h1><h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><p>​        集合是存储对象的容器，集合中可以存储任意类型的对象，而且长度可变。在程序中有可能无法预先知道需要多少个对象，那么用数组来装对象的话，长度不好定义，而集合解决了这样的问题。</p>
 <p>​         容器主要包括 Collection 和 Map 两种，Collection 存储着对象的集合，而 Map 存储着键值对（两个对象）的映射表。 </p>
 <img src="/2020/02/01/Java-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/1580527655939.png" alt="1580527655939" style="zoom:80%;">
 
@@ -478,40 +477,29 @@
 <h3 id="1-Set：唯一性"><a href="#1-Set：唯一性" class="headerlink" title="1. Set：唯一性"></a>1. Set：唯一性</h3><h4 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h4><p>基于<strong>红黑树</strong>实现，支持<strong>有序性</strong>操作，例如根据一个范围查找元素的操作。但是查找效率不如 HashSet，HashSet 查找的时间复杂度为 O(1)，TreeSet 则为 O(logN)。红黑树的算法规则是<strong>左小右大</strong>。</p>
 <ol>
 <li><p>红黑树是一种特定类型的二叉树， 是一种含有红黑结点并能自平衡的二叉查找树。它必须满足下面性质： </p>
-<ul>
-<li><p>性质1：每个节点要么是黑色，要么是红色。</p>
+<p>​    性质1：每个节点要么是黑色，要么是红色。</p>
+<p>​    性质2：根节点是黑色。</p>
+<p>​    性质3：每个叶子节点（NIL）是黑色。</p>
+<p>​    性质4：每个红色结点的两个子结点一定都是黑色。</p>
+<p>​    <strong>性质5：任意一结点到每个叶子结点的路径都包含数量相同的黑结点。</strong></p>
 </li>
-<li><p>性质2：根节点是黑色。</p>
-</li>
-<li><p>性质3：每个叶子节点（NIL）是黑色。</p>
-</li>
-<li><p>性质4：每个红色结点的两个子结点一定都是黑色。</p>
-</li>
-<li><p><strong>性质5：任意一结点到每个叶子结点的路径都包含数量相同的黑结点。</strong></p>
-<p> <img src="https://upload-images.jianshu.io/upload_images/2392382-4996bbfb4017a3b2.png" alt="img"> </p>
-<p>红黑树以后会补上，详解见： <a href="https://www.jianshu.com/p/e136ec79235c" target="_blank" rel="noopener">30张图带你彻底理解红黑树</a></p>
-</li>
-</ul>
-</li>
+</ol>
+<p>   <img src="/2020/02/01/Java-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/2392382-4996bbfb4017a3b2.png" alt="img"> </p>
+<p>   红黑树以后会补上，详解见： <a href="https://www.jianshu.com/p/e136ec79235c" target="_blank" rel="noopener">30张图带你彻底理解红黑树</a></p>
+<ol start="2">
 <li><p>TreeSet可以自然排序，那么TreeSet必定具有排序规则的</p>
-<ul>
-<li><p>元素自身具有比较性，需要实现Comparable接口，重写compareTo方法。这种方式叫做元素的自然排序</p>
-</li>
-<li><p>容器具备比较性，当元素不具备比较性，或者自身具备的比较性不是所需要的，那么此时也可以让容器自身具备。需要定义一个类实现Comparator接口， 重写compare方法，并将该接口的子类实例对象作为参数传递给TreeSet集合的构造方法。（<code>注： 当Comparable比较方式和Comparator比较方式同时存在，以Comparator为主</code>）</p>
-</li>
-<li><p>基本数据类型具备自身比较性，比如String， int等，String内部已经继承了Comparable接口，所以具备比较性，我们自己定义的元素，想要存入TreeSet中，就必须自己实现该接口，也就是说要让对象具备就比较性，如果存入相同的元素则只会存入一个到TreeSet中。</p>
-</li>
-<li><p>TreeSet中如何保证元素的唯一性： 通过compareTo或者compare方法来保证元素的唯一性。</p>
+<p>​    ① 元素自身具有比较性，需要实现Comparable接口，重写compareTo方法。这种方式叫做元素的自然排序</p>
+<p>​    ② 容器具备比较性，当元素不具备比较性，或者自身具备的比较性不是所需要的，那么此时也可以让容器自身具备。需要定义一个类实现Comparator接口， 重写compare方法，并将该接口的子类实例对象作为参数传递给TreeSet集合的构造方法。（<code>注： 当Comparable比较方式和Comparator比较方式同时存在，以Comparator为主</code>）</p>
+<p>​    ③ 基本数据类型具备自身比较性，比如String， int等，String内部已经继承了Comparable接口，所以具备比较性，我们自己定义的元素，想要存入TreeSet中，就必须自己实现该接口，也就是说要让对象具备就比较性，如果存入相同的元素则只会存入一个到TreeSet中。</p>
+<p>​    ④ TreeSet中如何保证元素的唯一性： 通过compareTo或者compare方法来保证元素的唯一性。</p>
 <p>Person类中有name和age属性，下面是重写的compareTo方法以及hashCode和equals方法。这是使元素自身具备比较性：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> nama.hashCode() + age*<span class="number">33</span>;</span><br><span class="line">   &#125;</span><br><span class="line">     </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(!(obj  <span class="keyword">instanceof</span>  Person))&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">     </span><br><span class="line">       Person p = (Person)obj;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.nama.equals(p.nama) &amp;&amp; <span class="keyword">this</span>.age == p.age;</span><br><span class="line">   &#125;</span><br><span class="line">  </span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">       Person p = (Person)o;</span><br><span class="line">       <span class="keyword">if</span>(<span class="keyword">this</span>.age &gt; p.age)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span>(<span class="keyword">this</span>.age &lt;  p.age)&#123;</span><br><span class="line">           <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.nama.compareTo(p.nama);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> nama.hashCode() + age*<span class="number">33</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(!(obj  <span class="keyword">instanceof</span>  Person))&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   </span><br><span class="line">       Person p = (Person)obj;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.nama.equals(p.nama) &amp;&amp; <span class="keyword">this</span>.age == p.age;</span><br><span class="line">   &#125;</span><br><span class="line">  </span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">       Person p = (Person)o;</span><br><span class="line">       <span class="keyword">if</span>(<span class="keyword">this</span>.age &gt; p.age)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span>(<span class="keyword">this</span>.age &lt;  p.age)&#123;</span><br><span class="line">           <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.nama.compareTo(p.nama);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <p>下面是是使容器自身具备比较性，要自定义比较器：定义一个类实现Comparator接口， 重写compare方法，并将该接口的子类实例对象作为参数传递给TreeSet集合的构造方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Object o1, Object o2)</span> </span>&#123;</span><br><span class="line">        Person p1 = (Person) o1;</span><br><span class="line">        Person p2 = (Person) o2;</span><br><span class="line">        <span class="comment">// 首先比较年龄，年龄不一样就是不同元素，因为存在同名的人</span></span><br><span class="line">        <span class="keyword">if</span>(p1.getAge() &gt; p2.getAge())&#123; <span class="comment">// 按照年龄升序排列</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>( p1.getAge() &lt; p2.getAge())&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果年龄相同则比较姓名</span></span><br><span class="line">        <span class="keyword">return</span> p1.getNama().compareTo(p2.getNama());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        TreeSet&lt;Person&gt; set = <span class="keyword">new</span> TreeSet&lt;&gt;(<span class="keyword">new</span> MyComparator()); <span class="comment">// 传入比较器</span></span><br><span class="line">        set.add(<span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="number">12</span>));</span><br><span class="line">        set.add(<span class="keyword">new</span> Person(<span class="string">"李四"</span>, <span class="number">5</span>));</span><br><span class="line">        set.add(<span class="keyword">new</span> Person(<span class="string">"李四"</span>, <span class="number">12</span>));</span><br><span class="line"></span><br><span class="line">        set.add(<span class="keyword">new</span> Person(<span class="string">"tom"</span>, <span class="number">24</span>));</span><br><span class="line">        set.add(<span class="keyword">new</span> Person(<span class="string">"tom"</span> , <span class="number">24</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Person p: set)&#123;</span><br><span class="line">            out.println(p.getNama()+<span class="string">"   "</span>+p.getAge());</span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br><span class="line">输出： </span><br><span class="line">李四   <span class="number">5</span></span><br><span class="line">张三   <span class="number">12</span></span><br><span class="line">李四   <span class="number">12</span></span><br><span class="line">tom   <span class="number">24</span></span><br><span class="line"></span><br><span class="line">可以看到重名的tom是相同的元素，智慧添加一个到TreeSet中，并且输出的顺序是按照年龄大小排列的</span><br></pre></td></tr></table></figure>
 
 
 
-</li>
-</ul>
 </li>
 </ol>
 <h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><p>基于<strong>哈希表</strong>实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet 得到的结果是不确定的。（无序）</p>
@@ -679,12 +667,10 @@
 <li>values() 方法来获取所有值 ：Collection<V> values()  不能获取到key对象</V></li>
 <li><strong>Map.Entry对象：重点！！！！推荐使用</strong>： Interface Map.Entry&lt;K,V&gt;</li>
 </ol>
-<h4 id="Map-Entry"><a href="#Map-Entry" class="headerlink" title="Map.Entry"></a>Map.Entry</h4><ul>
-<li><pre><code class="java"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">interface</span> <span class="title">Map</span>.<span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</span>
-<span class="class"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">将map集合中的键值对关系打包成一个Map.Entry对象，将该对象存入Set结合中，使用getKey() 和 getValue()来获取键和值</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line"> public static void main(String[] args) &#123;</span><br><span class="line">        HashMap&lt;String, Integer&gt; map &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">        map.put(&quot;aaa&quot;, 123);</span><br><span class="line">        map.put(&quot;bbb&quot;, 345);</span><br><span class="line">        map.put(&quot;ccc&quot;, 121);</span><br><span class="line">        map.put(&quot;ddd&quot;, 675);</span><br><span class="line"></span><br><span class="line">        Set&lt;Map.Entry&lt;String, Integer&gt;&gt; s &#x3D; map.entrySet();</span><br><span class="line">        Iterator&lt;Map.Entry&lt;String, Integer&gt;&gt; iterator &#x3D; s.iterator();</span><br><span class="line">        while (iterator.hasNext())&#123;</span><br><span class="line">            Map.Entry&lt;String, Integer&gt; en &#x3D; iterator.next();</span><br><span class="line">            System.out.println(&quot;键： &quot;+ en.getKey()+&quot; 值：&quot;+ en.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></span>
-<span class="class"></span></code></pre>
-</li>
-</ul>
+<h4 id="Map-Entry"><a href="#Map-Entry" class="headerlink" title="Map.Entry"></a>Map.Entry</h4><p><code>public static interface Map.Entry&lt;K,V&gt;</code></p>
+<p>将map集合中的键值对关系打包成一个Map.Entry对象，将该对象存入Set结合中，使用getKey() 和 getValue()来获取键和值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       HashMap&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">       map.put(<span class="string">"aaa"</span>, <span class="number">123</span>);</span><br><span class="line">       map.put(<span class="string">"bbb"</span>, <span class="number">345</span>);</span><br><span class="line">       map.put(<span class="string">"ccc"</span>, <span class="number">121</span>);</span><br><span class="line">       map.put(<span class="string">"ddd"</span>, <span class="number">675</span>);</span><br><span class="line"></span><br><span class="line">       Set&lt;Map.Entry&lt;String, Integer&gt;&gt; s = map.entrySet();</span><br><span class="line">       Iterator&lt;Map.Entry&lt;String, Integer&gt;&gt; iterator = s.iterator();</span><br><span class="line">       <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">           Map.Entry&lt;String, Integer&gt; en = iterator.next();</span><br><span class="line">           System.out.println(<span class="string">"键： "</span>+ en.getKey()+<span class="string">" 值："</span>+ en.getValue());</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>键： aaa 值：123<br>键： ccc 值：121<br>键： bbb 值：345<br>键： ddd 值：675</p>
 </blockquote>
@@ -904,10 +890,6 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dfs</a>
         		</li>
       		 
@@ -917,6 +899,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">搜索</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
         		</li>
       		
 		</ul>
@@ -1051,10 +1037,6 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dfs</a>
         		</li>
       		 
@@ -1064,6 +1046,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">搜索</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -1394,15 +1380,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dfs</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">并查集</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
         		</li>
       		
 		</ul>
@@ -1705,11 +1691,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">并查集</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">并查集</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
         		</li>
       		
 		</ul>
@@ -1859,10 +1845,6 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dfs</a>
         		</li>
       		 
@@ -1872,6 +1854,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">搜索</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中等</a>
         		</li>
       		
 		</ul>
@@ -2177,23 +2163,27 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">简单</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">中等</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2205,11 +2195,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">简单</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2225,19 +2211,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">中等</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关键字</a>
+                <a href="javascript:void(0)" class="js-tag color4">位操作</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2245,7 +2223,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">位操作</a>
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日记</a>
               </li>
             
             <div class="clearfix"></div>
