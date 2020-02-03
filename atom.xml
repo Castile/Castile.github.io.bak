@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://castile.github.io/"/>
-  <updated>2020-02-02T11:24:58.761Z</updated>
+  <updated>2020-02-03T09:10:10.508Z</updated>
   <id>https://castile.github.io/</id>
   
   <author>
@@ -15,6 +15,74 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode-344-反转字符串</title>
+    <link href="https://castile.github.io/2020/02/03/leetcode-344-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    <id>https://castile.github.io/2020/02/03/leetcode-344-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/</id>
+    <published>2020-02-03T08:53:27.000Z</published>
+    <updated>2020-02-03T09:10:10.508Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><blockquote><p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。</p><p>不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。</p><p>你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。</p></blockquote><blockquote><p>示例 1：</p><p>输入：[“h”,”e”,”l”,”l”,”o”]<br>输出：[“o”,”l”,”l”,”e”,”h”]<br>示例 2：</p><p>输入：[“H”,”a”,”n”,”n”,”a”,”h”]<br>输出：[“h”,”a”,”n”,”n”,”a”,”H”]</p><p>来源：力扣（LeetCode）</p></blockquote><blockquote><p>链接：<a href="https://leetcode-cn.com/problems/reverse-string" target="_blank" rel="noopener">https://leetcode-cn.com/problems/reverse-string</a></p></blockquote><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><ol><li><p>就地操作，而且要是O(1)的空间，可以使用迭代方法，首尾指针解决</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reverseString</span><span class="params">(<span class="keyword">char</span>[] s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length;</span><br><span class="line">        <span class="keyword">char</span> tmp;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len/<span class="number">2</span> ; i++)&#123;</span><br><span class="line">            tmp = s[i];</span><br><span class="line">            s[i] =  s[len - i - <span class="number">1</span>]; <span class="comment">//这是末尾的值</span></span><br><span class="line">            s[len-i-<span class="number">1</span>] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><ol start="2"><li><p>也可以用递归来做，但是使用了辅助栈，不满足O(1)的空间要求</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reverseString</span><span class="params">(<span class="keyword">char</span>[] s)</span> </span>&#123;</span><br><span class="line">        help(s, <span class="number">0</span>, s.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">help</span><span class="params">(<span class="keyword">char</span>[] s, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= j) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">char</span> tmp = s[i];</span><br><span class="line">        s[i] = s[j];</span><br><span class="line">        s[j] = tmp;</span><br><span class="line">        i++;</span><br><span class="line">        j--;</span><br><span class="line">        help(s, i, j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> <a href="https://github.com/Castile/algorithm/blob/master/leetcode/src/Str/leetcode344_ReverseStr.java" target="_blank" rel="noopener">https://github.com/Castile/algorithm/blob/master/leetcode/src/Str/leetcode344_ReverseStr.java</a> </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。&lt;/p&gt;
+&lt;p&gt;不要
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://Castile.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="算法" scheme="https://Castile.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="简单" scheme="https://Castile.github.io/tags/%E7%AE%80%E5%8D%95/"/>
+    
+      <category term="字符串" scheme="https://Castile.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+      <category term="递归" scheme="https://Castile.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode-24-两两交换链表中的节点</title>
+    <link href="https://castile.github.io/2020/02/03/leetcode-24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/"/>
+    <id>https://castile.github.io/2020/02/03/leetcode-24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/</id>
+    <published>2020-02-03T08:18:28.000Z</published>
+    <updated>2020-02-03T08:51:25.948Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><blockquote><p>给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。</p><p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p><p>示例：</p><p>给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3<br>链接：<a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs" target="_blank" rel="noopener">https://leetcode-cn.com/problems/swap-nodes-in-pairs</a></p></blockquote><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><ol><li><p>递归：</p><p>​        我们可以定义函数 swap(head) 以实现解决方案，其中输入的参数 head 指向链表的头节点。* 而该函数应当返回将链表中每两个相邻节点交换后得到的新列表的头节点 head 。</p><p>​        按照我们上面列出的步骤，我们可以按下面的流程来实现函数：</p><p>​        （1）首先，我们交换列表中的前两个节点，也就是 head 和 head.next；</p><p>​        （2）然后我们以 swap(head.next.next) 的形式调用函数自身，以交换头两个节点之后列表的其余部分。</p><p>​        （3）最后，我们将步骤（2）中的子列表的返回头与步骤（1）中交换的两个节点相连，以形成新的链                    表。</p></li><li><p>迭代</p><p>新增一个头节点 dummy node， dummy.next = head； 更好操作链表。流程图如下：</p><img src="/2020/02/03/leetcode-24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/1580719129953.png" alt="1580719790068" style="zoom:80%;"></li></ol><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>源码： <a href="https://github.com/Castile/algorithm/blob/master/leetcode/src/LinkedList/leetcode24_SwapNodesInPairs.java" target="_blank" rel="noopener">https://github.com/Castile/algorithm/blob/master/leetcode/src/LinkedList/leetcode24_SwapNodesInPairs.java</a> </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> LinkedList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Hongliang Zhu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2020-02-03 15:51</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> val;</span><br><span class="line">      ListNode next;</span><br><span class="line">      ListNode(<span class="keyword">int</span> x) &#123; val = x; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">leetcode24_SwapNodesInPairs</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 递归解法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)     <span class="keyword">return</span> head;</span><br><span class="line">        ListNode n = head.next.next;  <span class="comment">// 下一次要传递的节点</span></span><br><span class="line">        <span class="comment">//交换这两个节点</span></span><br><span class="line">        ListNode p = head.next;</span><br><span class="line">        p.next = head;</span><br><span class="line">        head.next = swapPairs(n); <span class="comment">// 递归</span></span><br><span class="line">        <span class="keyword">return</span> p; <span class="comment">// 返回交换之后的头结点</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 迭代</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs_it</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        ListNode pre = dummy;</span><br><span class="line">        <span class="keyword">while</span>(head != <span class="keyword">null</span> &amp;&amp; head.next != <span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode first = head;</span><br><span class="line">            ListNode second = head.next;</span><br><span class="line">            <span class="comment">// 交换</span></span><br><span class="line">            first.next = second.next;</span><br><span class="line">            second.next = first;</span><br><span class="line">            pre.next = second;</span><br><span class="line">            <span class="comment">// 初始化头</span></span><br><span class="line">            head = first.next;</span><br><span class="line">            pre = first;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。&lt;/p&gt;
+&lt;p&gt;你不能只是单纯的改变节点内部的值，而是需
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://Castile.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="算法" scheme="https://Castile.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="中等" scheme="https://Castile.github.io/tags/%E4%B8%AD%E7%AD%89/"/>
+    
+      <category term="递归" scheme="https://Castile.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="链表" scheme="https://Castile.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode-200-岛屿数量</title>
